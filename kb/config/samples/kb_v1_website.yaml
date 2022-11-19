@@ -1,0 +1,9 @@
+apiVersion: kb.crd.dango.io/v1
+kind: Website
+metadata: 
+  name: test
+spec:
+  gitRepo: https://github.com/potapotato/formyrose
+  port: 30010
+# status:
+  # availableReplicas: 0

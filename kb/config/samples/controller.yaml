@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-controller
+spec:
+  selector:
+    matchLabels:
+      controller: website-controller
+  template:
+    metadata:
+      labels:
+        controller: website-controller 
+    spec:
+      containers:
+      - image: dango.io/crd-controller/website/kb:latest
+        imagePullPolicy: Never
+        name: controller
+        env: 
+        - name: KUBECONFIG
+          value: /tmp/kubeconfig
+        volumeMounts:
+        - mountPath: /tmp/kubeconfig
+          name: kubeconfig
+      volumes:
+      - hostPath:
+          path: /root/.kube/config
+        name: kubeconfig
